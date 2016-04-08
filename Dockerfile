@@ -9,49 +9,7 @@ ENV ARCH x86_64
 # Adding and calling builder-enter
 COPY ./overlay-${ARCH}/etc/yum.repos.d/ /etc/yum.repos.d/
 COPY ./overlay-image-tools/usr/local/sbin/scw-builder-enter /usr/local/sbin/
-RUN set -e; case "${ARCH}" in \
-    armv7l|armhf|arm) \
-        echo "ARM not supported by RHEL7"\
-        exit 1\ 
-      ;; \
-    x86_64|amd64) \
-        yum install -y redhat-lsb-core; \
-        /bin/sh -e /usr/local/sbin/scw-builder-enter; \
-        yum clean all; \
-      ;; \
-    esac
-
-
-RUN if [ "$ARCH" = "armv7l" ]; then YUM_OPTS=--nogpg; fi \
- && yum install ${YUM_OPTS} -y \
-      bash \
-      bash-completion \
-      ca-certificates \
-      cron \
-      curl \
-      ethstatus \
-      haveged \
-      ioping \
-      iotop \
-      iperf \
-      locate \
-      make \
-      mg \
-      ntp \
-      ntpdate \
-      rsync \
-      screen \
-      socat \
-      ssh \
-      sudo \
-      sysstat \
-      tar \
-      tcpdump \
-      tmux \
-      vim \
-      wget \
- && yum clean all
-
+RUN  /bin/sh -e /usr/local/sbin/scw-builder-enter; \
 
 # Patch rootfs
 COPY ./overlay-image-tools ./overlay ./overlay-${ARCH} /
