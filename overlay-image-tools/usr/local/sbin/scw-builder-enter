@@ -3,33 +3,6 @@
 # This script will prepare the rootfs for the docker-based image-builder
 # toolsuite
 
-set -e
-
-lsb_dist="$(lsb_release -si 2>/dev/null || (test -f /etc/lsb-release && . /etc/lsb-release; echo ${DISTRIB_ID:-no_lsb}))"
-lsb_release="$(lsb_release -sr 2>/dev/null || (test -f /etc/lsb-release && . /etc/lsb-release; echo ${DISTRIB_RELEASE:-no_lsb}))"
-
-case "$lsb_dist" in
-    Ubuntu)
-        # prevent init scripts from running during install/update
-        printf '#!/bin/sh\nexit 101\n' > /usr/sbin/policy-rc.d && \
-            chmod +x /usr/sbin/policy-rc.d
-        if [ -f /sbin/initctl.distrib ]; then
-            mv /sbin/initctl.distrib /sbin/initctl
-        fi
-        cp /sbin/initctl /sbin/initctl.orig
-        printf '#!/bin/sh\nexit 0\n' > /sbin/initctl
-        dpkg-divert --local --rename --add /sbin/initctl
-        ;;
-    Debian)
-        # prevent init scripts from running during install/update
-        printf '#!/bin/sh\nexit 101\n' > /usr/sbin/policy-rc.d && \
-            chmod +x /usr/sbin/policy-rc.d
-        ;;
-    *)
-        echo "Warning: unsupported distribution $lsb_dist ($lsb_release)" >&2
-        ;;
-esac
-
 
 # Ensure /dev as the minimum devices set
 test -c /dev/null     || mknod -m 0666 /dev/null     c 1 3
