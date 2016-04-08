@@ -1,16 +1,16 @@
-NAME =			centos
+NAME =			rhel
 VERSION =		latest
-VERSION_ALIASES =	7.2.1511 7.2 7
-TITLE =			CentOS 7
-DESCRIPTION =		CentOS 7
-SOURCE_URL =		https://github.com/scaleway/image-centos
-VENDOR_URL =		https://www.centos.org/
+VERSION_ALIASES =	7.2
+TITLE =			RHEL 7
+DESCRIPTION =		Red Hat Enterprise Linux 7
+SOURCE_URL =		https://github.com/kristvanbesien/image-rhel
+VENDOR_URL =		https://www.redhat.com/
 DEFAULT_IMAGE_ARCH =	x86_64
 
 
 IMAGE_VOLUME_SIZE =	50G
 IMAGE_BOOTSCRIPT =	latest
-IMAGE_NAME =		CentOS 7 (beta)
+IMAGE_NAME =		RHEL 7 
 
 
 # This is specific to distribution images

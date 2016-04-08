@@ -1,11 +1,9 @@
 ## -*- docker-image-name: "rhel7:latest" -*-
 FROM rhel7/rhel
-# following 'FROM' lines are used dynamically thanks do the image-builder
-# which dynamically update the Dockerfile if needed.
-
 
 # Environment
-ENV SCW_BASE_IMAGE rhel7:latest
+ENV SCW_BASE_IMAGE rhel7
+ENV ARCH x86_64
 
 
 # Adding and calling builder-enter
