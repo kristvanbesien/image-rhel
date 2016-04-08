@@ -1,11 +1,11 @@
-## -*- docker-image-name: "scaleway/centos:latest" -*-
+## -*- docker-image-name: "rhel7:latest" -*-
 FROM rhel7/rhel
 # following 'FROM' lines are used dynamically thanks do the image-builder
 # which dynamically update the Dockerfile if needed.
 
 
 # Environment
-ENV SCW_BASE_IMAGE scaleway/centos:latest
+ENV SCW_BASE_IMAGE rhel7:latest
 
 
 # Adding and calling builder-enter
@@ -13,7 +13,7 @@ COPY ./overlay-${ARCH}/etc/yum.repos.d/ /etc/yum.repos.d/
 COPY ./overlay-image-tools/usr/local/sbin/scw-builder-enter /usr/local/sbin/
 RUN set -e; case "${ARCH}" in \
     armv7l|armhf|arm) \
-        echo "ARM not support by RHEL7"\
+        echo "ARM not supported by RHEL7"\
         exit 1\ 
       ;; \
     x86_64|amd64) \
