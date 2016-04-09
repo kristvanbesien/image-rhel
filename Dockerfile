@@ -9,7 +9,7 @@ ENV ARCH x86_64
 # Adding and calling builder-enter
 COPY ./overlay-${ARCH}/etc/yum.repos.d/ /etc/yum.repos.d/
 COPY ./overlay-image-tools/usr/local/sbin/scw-builder-enter /usr/local/sbin/
-RUN  /bin/sh -e /usr/local/sbin/scw-builder-enter; \
+RUN  /bin/sh -e /usr/local/sbin/scw-builder-enter 
 
 # Patch rootfs
 COPY ./overlay-image-tools ./overlay ./overlay-${ARCH} /
