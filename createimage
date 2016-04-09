@@ -1,0 +1,7 @@
+#!/bin/bash
+
+IMAGE=$1
+
+DEVICESIZE=$(blockdev --getsize64 /dev/nbd1)
+
+
