@@ -1,4 +1,4 @@
-NAME =			rhel
+NAME =			rhel7
 VERSION =		latest
 VERSION_ALIASES =	7.2
 TITLE =			RHEL 7
